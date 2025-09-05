@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    int act;
+    int id = 0;
+    int tot = 0;
+    
+    typedef struct
+    {
+        char name[20];
+        int price;
+        int stock;
+    }product;
+    product *prod = NULL;
+
+    do
+    {
+        printf("\n==== Inventory Management ====\n");
+        printf("1 - Add New Product\n");
+        printf("2 - View Inventory\n");
+        printf("3 - Search Product\n");
+        printf("4 - Exit\n");
+        scanf("%d", &act);
+        switch(act)
+        {
+            case 1:
+            {
+                tot++;
+                product *temp = realloc(prod, tot * sizeof(product));
+                if(temp == NULL)
+                {
+                    printf("Memory failed\n");
+                    return 1;
+                }
+                prod = temp;
+                printf("Enter product name: ");
+                scanf(" %[^\n]", prod[tot - 1].name);
+                printf("Enter product price: ");
+                scanf("%d", &prod[tot - 1].price);
+                printf("Enter product stock: ");
+                scanf("%d", &prod[tot - 1].stock);
+                break;
+            }
+            
+            case 2:
+            {
+                for(int i = 0; i < tot; i++)
+                {
+                    printf("\nName: %s\n", prod[i].name);
+                    printf("Price: %d\n", prod[i].price);
+                    printf("Stock: %d\n", prod[i].stock);
+                }
+                break;
+            }
+            case 3:
+            {
+                char search[20];
+                printf("Search product name: ");
+                scanf(" %[^\n]", search);
+                for(int ii = 0; ii < tot; ii++)
+                {
+                    if(strcmp(search, prod[ii].name)==0)
+                    {
+                        printf("Name: %s\n", prod[ii].name);
+                        printf("Price: %d\n", prod[ii].price);
+                        printf("Stock: %d\n", prod[ii].stock);
+                    }
+                }
+                break;
+            }
+        }
+    } while(act != 4);
+}
