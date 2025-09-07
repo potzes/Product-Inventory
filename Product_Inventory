@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+void menu(int *act2);
+
 int main()
 {
     int act;
@@ -36,12 +38,13 @@ int main()
                     return 1;
                 }
                 prod = temp;
-                printf("Enter product name: ");
+                printf("\nEnter product name: ");
                 scanf(" %[^\n]", prod[tot - 1].name);
                 printf("Enter product price: ");
                 scanf("%d", &prod[tot - 1].price);
                 printf("Enter product stock: ");
                 scanf("%d", &prod[tot - 1].stock);
+                menu(&act);
                 break;
             }
             
@@ -53,6 +56,7 @@ int main()
                     printf("Price: %d\n", prod[i].price);
                     printf("Stock: %d\n", prod[i].stock);
                 }
+                menu(&act);
                 break;
             }
             case 3:
@@ -64,13 +68,35 @@ int main()
                 {
                     if(strcmp(search, prod[ii].name)==0)
                     {
-                        printf("Name: %s\n", prod[ii].name);
+                        printf("\nName: %s\n", prod[ii].name);
                         printf("Price: %d\n", prod[ii].price);
                         printf("Stock: %d\n", prod[ii].stock);
                     }
                 }
+                menu(&act);
                 break;
             }
         }
     } while(act != 4);
+}
+
+void menu(int *act2)
+{
+    int opt; 
+    printf("\n---------------\n");
+    printf("1 - Menu\n");
+    printf("2 - Exit\n");
+    scanf("%d", &opt);
+    printf("---------------\n");    
+    switch(opt)
+    {
+        case 1: break;
+
+        case 2:
+        {
+            *act2 = 4;
+            break;
+        }
+    }
+
 }
