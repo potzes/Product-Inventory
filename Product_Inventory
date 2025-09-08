@@ -71,9 +71,63 @@ int main()
                         printf("\nName: %s\n", prod[ii].name);
                         printf("Price: %d\n", prod[ii].price);
                         printf("Stock: %d\n", prod[ii].stock);
+                        int actt;
+                        printf("\n---------------\n");
+                        printf("1 - Edit product\n");
+                        printf("2 - Menu\n");
+                        printf("3 - Exit\n");
+                        scanf("%d", &actt);
+                        printf("---------------\n");    
+                        switch(actt)
+                        {
+                            case 1:
+                            {
+                                int acttt;
+                                printf("1 - Edit product name\n");
+                                printf("2 - Edit product price\n");
+                                printf("3 - Edit product stock\n");
+                                scanf("%d", &acttt);
+                                switch(acttt)
+                                {
+                                    case 1:
+                                    {
+                                        printf("Enter updated product name: ");
+                                        scanf(" %[^\n]", &prod[ii].name);
+                                        printf("Updated successfully\n");
+                                        menu(&act);
+                                        break;
+                                    }
+                                    
+                                    case 2:
+                                    {
+                                        printf("Enter updated product price: ");
+                                        scanf("%d", &prod[ii].price);
+                                        printf("Updated successfully\n");
+                                        menu(&act);
+                                        break;
+                                        
+                                    case 3:
+                                    {
+                                        printf("Enter updated product stock: ");
+                                        scanf("%d", prod[ii].stock);
+                                        printf("Updated successfully\n");
+                                        menu(&act);
+                                        break;
+                                    }
+                                    }
+                                }
+                            }
+                            
+                            case 2: break;
+                    
+                            case 3:
+                            {
+                                act = 4;
+                                break;
+                            }
+                        }
                     }
                 }
-                menu(&act);
                 break;
             }
         }
