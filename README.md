@@ -1,6 +1,6 @@
 # Product-Inventory
 
-A program that allows user to add, search, and track products in their inventory.
+A CLI program built using C language that allows user to add, search, and track products in their inventory.
 
 ## Main Features
 
@@ -11,3 +11,7 @@ A program that allows user to add, search, and track products in their inventory
 **Search product** - This allows the user to search an existing product within their inventory through the product's name. If the product is found, it will display the product's information.
 
 **Edit product** - This function can only be used after a successful product search. User will have an option to exit or edit the product information.
+
+## How to use
+
+  This program is currently pure CLI program which runs only on terminal after compiling. The main interface of this program includes the program's function with their corresponding number(1 - 4). Those number are used for user to navigate the program by inputing the corresponding number of the feature they want to use. However, number 4 is used for exiting or stopping the program.
