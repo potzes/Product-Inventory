@@ -92,7 +92,7 @@ int main()
                                     case 1:
                                     {
                                         printf("Enter updated product name: ");
-                                        scanf(" %[^\n]", &prod[ii].name);
+                                        scanf(" %[^\n]", prod[ii].name);
                                         printf("Updated successfully\n");
                                         menu(&act);
                                         break;
@@ -109,7 +109,7 @@ int main()
                                     case 3:
                                     {
                                         printf("Enter updated product stock: ");
-                                        scanf("%d", prod[ii].stock);
+                                        scanf("%d", &prod[ii].stock);
                                         printf("Updated successfully\n");
                                         menu(&act);
                                         break;
