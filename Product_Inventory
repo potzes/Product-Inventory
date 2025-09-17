@@ -7,8 +7,13 @@ void menu(int *act2);
 int main()
 {
     int act;
+    int act3;
     int id = 0;
     int tot = 0;
+    char inv[40];
+    char append[5] = ".txt";
+    char TempInv[45];
+    FILE *fptr;
     
     typedef struct
     {
@@ -18,9 +23,70 @@ int main()
     }product;
     product *prod = NULL;
 
+    printf("1 - Create new inventory\n");
+    printf("2 - Load an inventory\n");
+    scanf("%d", &act3);
+
+    switch(act3)
+    {
+        case 1:
+        {
+            printf("Enter inventory name: ");
+            scanf(" %[^\n]", inv);
+            strcpy(TempInv, inv);
+            strncat(TempInv, append, 5);
+            fptr = fopen(TempInv, "w");
+            if(fptr == NULL)
+            {
+                printf("Error occurs when creating an inventory!\n");
+                return 1;
+            }
+            fclose(fptr);
+            break;
+        }
+
+        case 2:
+        {
+            printf("Enter inventory name: ");
+            scanf(" %[^\n]", inv);
+            strcpy(TempInv, inv);
+            strncat(TempInv, append, 5);
+            fptr = fopen(TempInv, "r");
+            if(fptr == NULL)
+            {
+                printf("Inventory with name \"%s\" does not exist.\n", inv);
+                return 1;
+            }
+            fclose(fptr);
+
+            fptr = fopen(TempInv, "rb");
+            if(fptr == NULL)
+            {
+                printf("Error retrieving the file\n");
+                return 1;
+            }
+            fread(&tot, sizeof(int), 1, fptr);
+            product *temp = malloc(sizeof(product) * tot);
+            if(temp == NULL)
+            {
+                printf("Error allocating memory.\n");
+                return 1;
+            }
+            prod = temp;
+            for(int load = 0; load < tot; load++)
+            {
+                fread(&prod[load].name, sizeof(prod[load].name), 1, fptr);
+                fread(&prod[load].price, sizeof(prod[load].price), 1, fptr);
+                fread(&prod[load].stock, sizeof(prod[load].stock), 1, fptr);
+            }
+            fclose(fptr);
+            break;
+        }
+    }
+
     do
     {
-        printf("\n==== Inventory Management ====\n");
+        printf("\n==== %s Inventory ====\n", inv);
         printf("1 - Add New Product\n");
         printf("2 - View Inventory\n");
         printf("3 - Search Product\n");
@@ -132,6 +198,22 @@ int main()
             }
         }
     } while(act != 4);
+
+    fptr = fopen(TempInv, "wb");
+    if(fptr == NULL)
+    {
+        printf("Error\n");
+        return 1;
+    }
+    fwrite(&tot, sizeof(tot), 1, fptr);
+    for(int iii = 0; iii < tot; iii++)
+    {
+        fwrite(&prod[iii].name, sizeof(prod[iii].name), 1, fptr);
+        fwrite(&prod[iii].price, sizeof(prod[iii].price), 1, fptr);
+        fwrite(&prod[iii].stock, sizeof(prod[iii].stock), 1, fptr);
+    }
+    fclose(fptr);
+    return 0;
 }
 
 void menu(int *act2)
@@ -152,5 +234,6 @@ void menu(int *act2)
             break;
         }
     }
-
 }
+
+
