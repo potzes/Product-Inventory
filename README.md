@@ -12,6 +12,8 @@ A CLI program built using C language that allows user to add, search, and track 
 
 **Edit product** - This function can only be used after a successful product search. User will have an option to exit or edit the product information.
 
+**Save and load inventory** - Integration of file handling for inventory saving purposes. All of the product in the inventory inputted by the user will be saved to the designated file of the current inventory automatically before exiting the program. This allows user to retrieve the saved inventory including its products when reopening the program.
+
 ## How to use
 
   This program is currently pure CLI program which runs only on terminal after compiling. The main interface of this program includes the program's function with their corresponding number(1 - 4). Those number are used for user to navigate the program by inputing the corresponding number of the feature they want to use. However, number 4 is used for exiting or stopping the program.
@@ -25,8 +27,6 @@ A CLI program built using C language that allows user to add, search, and track 
 **PIN encryption** - Providing privacy and security of the inventory access.
 
 **Flexible product search** - Allowing user to search products without minding the capitalizations of the product name.
-
-**Save and load inventory** - Integration of file handling for inventory saving purposes.
 
 **Sorting of inventory** - Allowing user to sort the inventory view base on product name, price, or stock for a better visualization.
 
