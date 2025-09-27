@@ -16,13 +16,13 @@ A CLI program built using C language that allows user to add, search, and track 
 
 **Error handling** - Displays an error if the memory failed in a certain operations for easier troubleshooting.
 
+**Delete product** - Allowing user to remove a certain product from the inventory.
+
 ## How to use
 
   This program is currently pure CLI program which runs only on terminal after compiling. The main interface of this program includes the program's function with their corresponding number(1 - 4). Those number are used for user to navigate the program by inputing the corresponding number of the feature they want to use. However, number 4 is used for exiting or stopping the program.
 
 ## Future improvements
-
-**Deletion of product** - Allowing user to remove a certain product from the inventory.
 
 **PIN encryption** - Providing privacy and security of the inventory access.
 
