@@ -156,8 +156,9 @@ int main()
                         int actt;
                         printf("\n---------------\n");
                         printf("1 - Edit product\n");
-                        printf("2 - Menu\n");
-                        printf("3 - Exit\n");
+                        printf("2 - Delete product\n");
+                        printf("3 - Menu\n");
+                        printf("4 - Exit\n");
                         scanf("%d", &actt);
                         printf("---------------\n");    
                         switch(actt)
@@ -199,10 +200,36 @@ int main()
                                     }
                                 }
                             }
+
+                            case 2:
+                            {
+                                printf("Are you sure you want to delete this product?\n");
+                                printf("1 - Yes\n");
+                                printf("2 - No\n");
+                                int delete;
+                                scanf("%d", &delete);
+                                switch(delete)
+                                {
+                                    case 1:
+                                    {
+                                        for(int move = ii; move < (tot - 1); move++)
+                                        {
+                                            prod[move] = prod[move + 1];
+                                        }
+                                        tot--;
+                                        printf("Product deleted.\n");
+                                    }
+
+                                    case 2:
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
                             
-                            case 2: break;
+                            case 3: break;
                     
-                            case 3:
+                            case 4:
                             {
                                 act = 4;
                                 break;
