@@ -65,7 +65,8 @@ int main()
                 printf("Error retrieving the file\n");
                 return 1;
             }
-            fread(&tot, sizeof(int), 1, fptr);
+            int checker = fread(&tot, sizeof(int), 1, fptr);
+            if(checker != 1) printf("Error reading from the file\n");
             product *temp = malloc(sizeof(product) * tot);
             if(temp == NULL)
             {
@@ -226,19 +227,19 @@ int main()
         fwrite(&prod[iii].name, sizeof(prod[iii].name), 1, fptr);
         if(fwrite(&prod[iii].name, sizeof(prod[iii].name), 1, fptr) != 1)
         {
-        printf("Error retrieving accurate data\n");
+        printf("Error writing accurate data\n");
         return 1; 
         }
         fwrite(&prod[iii].price, sizeof(prod[iii].price), 1, fptr);
         if(fwrite(&prod[iii].price, sizeof(prod[iii].price), 1, fptr) != 1)
         {
-        printf("Error retrieving accurate data\n");
+        printf("Error writing accurate data\n");
         return 1; 
         }
         fwrite(&prod[iii].stock, sizeof(prod[iii].stock), 1, fptr);
         if(fwrite(&prod[iii].stock, sizeof(prod[iii].stock), 1, fptr) != 1)
         {
-        printf("Error retrieving accurate data\n");
+        printf("Error writing accurate data\n");
         return 1; 
         }
     }
