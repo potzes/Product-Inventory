@@ -13,6 +13,7 @@ int main()
     char inv[40];
     char append[5] = ".txt";
     char TempInv[45];
+    int leftovers;
     FILE *fptr;
     
     typedef struct
@@ -25,14 +26,20 @@ int main()
 
     printf("1 - Create new inventory\n");
     printf("2 - Load an inventory\n");
-    scanf("%d", &act3);
+    if (scanf("%d", &act3) != 1) 
+    {
+        printf("Invalid input.");
+        return 1;
+    }
 
     switch(act3)
     {
         case 1:
         {
             printf("Enter inventory name: ");
-            scanf(" %[^\n]", inv);
+            scanf(" %39[^\n]", inv);
+            while ((leftovers = getchar()) != '\n' && leftovers != EOF)
+            ;
             strcpy(TempInv, inv);
             strncat(TempInv, append, 5);
             fptr = fopen(TempInv, "w");
@@ -48,7 +55,9 @@ int main()
         case 2:
         {
             printf("Enter inventory name: ");
-            scanf(" %[^\n]", inv);
+            scanf(" %39[^\n]", inv);
+            while ((leftovers = getchar()) != '\n' && leftovers != EOF)
+            ;
             strcpy(TempInv, inv);
             strncat(TempInv, append, 5);
             fptr = fopen(TempInv, "r");
@@ -107,7 +116,11 @@ int main()
         printf("2 - View Inventory\n");
         printf("3 - Search Product\n");
         printf("4 - Exit\n");
-        scanf("%d", &act);
+        if (scanf("%d", &act) != 1) 
+        {
+            printf("Invalid input.");
+            return 1;
+        }
         switch(act)
         {
             case 1:
@@ -121,11 +134,21 @@ int main()
                 }
                 prod = temp;
                 printf("\nEnter product name: ");
-                scanf(" %[^\n]", prod[tot - 1].name);
+                scanf(" %19[^\n]", prod[tot - 1].name);
+                while ((leftovers = getchar()) != '\n' && leftovers != EOF)
+                ;
                 printf("Enter product price: ");
-                scanf("%d", &prod[tot - 1].price);
+                if (scanf("%d", &prod[tot - 1].price) != 1) 
+                {
+                    printf("Invalid input.");
+                    return 1;
+                }
                 printf("Enter product stock: ");
-                scanf("%d", &prod[tot - 1].stock);
+                if (scanf("%d", &prod[tot - 1].stock) != 1) 
+                {
+                    printf("Invalid input.");
+                    return 1;
+                }
                 menu(&act);
                 break;
             }
@@ -145,7 +168,9 @@ int main()
             {
                 char search[20];
                 printf("Search product name: ");
-                scanf(" %[^\n]", search);
+                scanf(" %19[^\n]", search);
+                while ((leftovers = getchar()) != '\n' && leftovers != EOF)
+                ;
                 for(int ii = 0; ii < tot; ii++)
                 {
                     if(strcmp(search, prod[ii].name)==0)
@@ -159,7 +184,11 @@ int main()
                         printf("2 - Delete product\n");
                         printf("3 - Menu\n");
                         printf("4 - Exit\n");
-                        scanf("%d", &actt);
+                        if (scanf("%d", &actt) != 1) 
+                        {
+                            printf("Invalid input.");
+                            return 1;
+                        }
                         printf("---------------\n");    
                         switch(actt)
                         {
@@ -169,13 +198,19 @@ int main()
                                 printf("1 - Edit product name\n");
                                 printf("2 - Edit product price\n");
                                 printf("3 - Edit product stock\n");
-                                scanf("%d", &acttt);
+                                if (scanf("%d", &acttt) != 1) 
+                                {
+                                    printf("Invalid input.");
+                                    return 1;
+                                }
                                 switch(acttt)
                                 {
                                     case 1:
                                     {
                                         printf("Enter updated product name: ");
-                                        scanf(" %[^\n]", prod[ii].name);
+                                        scanf(" %19[^\n]", prod[ii].name);
+                                        while ((leftovers = getchar()) != '\n' && leftovers != EOF)
+                                        ;
                                         printf("Updated successfully\n");
                                         menu(&act);
                                         break;
@@ -184,7 +219,11 @@ int main()
                                     case 2:
                                     {
                                         printf("Enter updated product price: ");
-                                        scanf("%d", &prod[ii].price);
+                                        if (scanf("%d", &prod[ii].price) != 1) 
+                                        {
+                                            printf("Invalid input.");
+                                            return 1;
+                                        }
                                         printf("Updated successfully\n");
                                         menu(&act);
                                         break;
@@ -192,7 +231,11 @@ int main()
                                     case 3:
                                     {
                                         printf("Enter updated product stock: ");
-                                        scanf("%d", &prod[ii].stock);
+                                        if (scanf("%d", &prod[ii].stock) != 1) 
+                                        {
+                                            printf("Invalid input.");
+                                            return 1;
+                                        }
                                         printf("Updated successfully\n");
                                         menu(&act);
                                         break;
@@ -207,7 +250,11 @@ int main()
                                 printf("1 - Yes\n");
                                 printf("2 - No\n");
                                 int delete;
-                                scanf("%d", &delete);
+                                if (scanf("%d", &delete) != 1) 
+                                {
+                                    printf("Invalid input.");
+                                    return 1;
+                                }
                                 switch(delete)
                                 {
                                     case 1:
@@ -280,7 +327,11 @@ void menu(int *act2)
     printf("\n---------------\n");
     printf("1 - Menu\n");
     printf("2 - Exit\n");
-    scanf("%d", &opt);
+    if (scanf("%d", &opt) != 1) 
+    {
+        printf("Invalid input.");
+        exit(1);
+    }
     printf("---------------\n");    
     switch(opt)
     {
